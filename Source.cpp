@@ -56,10 +56,16 @@ int main()
     Color lightred = { 255,102,102,255 };
     while (WindowShouldClose() == false)
     {
-        if (IsKeyPressed(KEY_SPACE)) {
-                Pause = !Pause;
+        int keypress = GetKeyPressed();
+        switch (keypress) {
+        case KEY_SPACE :
+            Pause = !Pause;
+            break;
+        case KEY_ENTER:
+            GameState = menu;
+            game.Reset();
+            break;
         }
-     
         BeginDrawing();
         ClearBackground(lightgrey);
         PlayMusicStream(music);
@@ -142,12 +148,7 @@ int main()
                 DrawRectangleRounded(pause, 0.3,6 ,lightBlue);
                 DrawText("PAUSED", pause.x + 70, pause.y + 25, 40, WHITE);
             }
-            if (IsKeyPressed(KEY_ENTER)) {
-
-
-                GameState = menu;
-
-            }
+           
         }
         else if (GameState == instruct) {
             DrawTexture(backtext3, 0, 0, WHITE);
@@ -164,9 +165,7 @@ int main()
             DrawText("When game is over, click on any arrow key to continue  ", 50, 550, 30, WHITE);
             DrawText("Click space bar to stop the game  ", 50, 600, 30, WHITE);
             DrawText("Click space bar again to continue the game  ", 50, 650, 30, WHITE);
-            if (IsKeyPressed(KEY_ENTER)) {
-                GameState = menu;
-            }
+           
         }
         else if (GameState == Hard)
         {
@@ -198,11 +197,7 @@ int main()
 
                 GameState = menu;
             }
-            if (IsKeyPressed(KEY_ENTER)) {
-
-                GameState = menu;
-
-            }
+            
         }
         else if (GameState == Audio) {
             DrawTexture(backtext3, 0, 0, WHITE);
@@ -229,11 +224,7 @@ int main()
                 noise = 0.0f;
                 SetMusicVolume(music, noise);
             }
-            if (IsKeyPressed(KEY_ENTER)) {
-
-             GameState = menu;
-
-            }
+         
         }
         EndDrawing();
 
