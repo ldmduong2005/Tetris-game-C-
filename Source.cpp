@@ -29,9 +29,8 @@ bool EventTriggered(double interval)
     }
     return false;
 }
-
 int main()
-{
+{   
     InitWindow(1000, 1100, "Tetris");
     SetTargetFPS(60);
     InitAudioDevice();
@@ -39,7 +38,6 @@ int main()
     Music music = LoadMusicStream("D:/C++/newtetris/Tetris.mp3");
     SetMusicVolume(music, noise);
     Sound gameover = LoadSound("D:/C++/newtetris/gameover.mp3");
-
     Font font = LoadFontEx("D:/C++/newtetris/monogram.ttf", 64, 0, 0);
     Game game = Game();
     Image back = LoadImage("D:/C++/newtetris/back3.png");
@@ -58,10 +56,8 @@ int main()
     Color lightred = { 255,102,102,255 };
     while (WindowShouldClose() == false)
     {
-
         if (IsKeyPressed(KEY_SPACE)) {
-            
-            Pause = !Pause;
+                Pause = !Pause;
         }
      
         BeginDrawing();
@@ -70,7 +66,6 @@ int main()
         UpdateMusicStream(music);
         if (GameState == menu) {
             DrawTexture(backtext, 0, 0, WHITE);
-         
             DrawText("TETRIS", 670 / 2 - MeasureText("TETRIS", 40) / 2, 40, 120, WHITE);
             Rectangle startButton = { 350, 350, 300, 100 };
             DrawRectangleRounded(startButton, 0.5, 30, GRAY);
@@ -155,7 +150,6 @@ int main()
             }
         }
         else if (GameState == instruct) {
-
             DrawTexture(backtext3, 0, 0, WHITE);
             DrawText("       Instructions", 570 / 2 - MeasureText("Instructions", 40) / 2, 20, 60, WHITE);
             DrawText("Press Enter to return to the Main Menu ", 50, 100, 30, WHITE);
@@ -204,17 +198,13 @@ int main()
 
                 GameState = menu;
             }
-
-
             if (IsKeyPressed(KEY_ENTER)) {
-
 
                 GameState = menu;
 
             }
         }
         else if (GameState == Audio) {
-
             DrawTexture(backtext3, 0, 0, WHITE);
             Rectangle audio1 = { 150, 400, 300, 100 };
             DrawRectangleRounded(audio1, 0.5, 30, GRAY);
@@ -239,29 +229,23 @@ int main()
                 noise = 0.0f;
                 SetMusicVolume(music, noise);
             }
+            if (IsKeyPressed(KEY_ENTER)) {
 
-        
+             GameState = menu;
 
-             if (IsKeyPressed(KEY_ENTER)) {
-
-
-            GameState = menu;
-
-             }
+            }
         }
         EndDrawing();
 
     }
-        
     UnloadSound(gameover);
     CloseAudioDevice();
     UnloadMusicStream(music);
-  
     CloseWindow();
     UnloadTexture(backtext);
     UnloadTexture(backtext2);
     UnloadTexture(backtext3);
     UnloadTexture(backtext4);
-  
+
     return 0;
 }
