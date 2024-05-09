@@ -56,15 +56,12 @@ int main()
     Color lightred = { 255,102,102,255 };
     while (WindowShouldClose() == false)
     {
-        int keypress = GetKeyPressed();
-        switch (keypress) {
-        case KEY_SPACE :
+        if (IsKeyPressed(KEY_SPACE)) {
             Pause = !Pause;
-            break;
-        case KEY_ENTER:
+        }
+        else if (IsKeyPressed(KEY_ENTER)) {
             GameState = menu;
             game.Reset();
-            break;
         }
         BeginDrawing();
         ClearBackground(lightgrey);
